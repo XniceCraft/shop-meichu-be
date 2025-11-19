@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shared_footers",
+  "info": {
+    "displayName": "Footer"
+  },
+  "options": {},
+  "attributes": {
+    "socialMedia": {
+      "type": "component",
+      "component": "shared.social-media",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

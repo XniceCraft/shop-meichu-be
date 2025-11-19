@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_shared_social_medias",
+  "info": {
+    "displayName": "Social Media"
+  },
+  "options": {},
+  "attributes": {
+    "media": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "Facebook",
+        "Instagram",
+        "Telegram",
+        "X",
+        "Linkedin",
+        "YouTube"
+      ]
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}
