@@ -7,25 +7,27 @@ export default factories.createCoreController(
     "api::category.category",
     ({ strapi }) => ({
         async findOne(ctx) {
-            const { slug } = ctx.params;
+            await this.validateQuery(ctx);
 
+            const { slug } = ctx.params;
+            const sanitizedQueryParams = await this.sanitizeQuery(ctx);
             const entity = await strapi
                 .documents("api::category.category")
                 .findFirst({
                     status: "published",
                     where: { slug },
+                    ...sanitizedQueryParams,
                 });
 
-            if (!entity) {
-                return ctx.notFound("Category not found");
-            }
-
             const sanitizedEntity = await this.sanitizeOutput(entity, ctx);
-            return this.transformResponse(sanitizedEntity);
+            return await this.transformResponse(sanitizedEntity);
         },
 
         async getProducts(ctx) {
+            await this.validateQuery(ctx);
+
             const { slug } = ctx.params;
+            const sanitizedQueryParams = await this.sanitizeQuery(ctx);
             const page = Math.max(1, parseInt(ctx.query.page as string) || 1);
             const pageSize = Math.min(
                 100,
@@ -37,6 +39,7 @@ export default factories.createCoreController(
                 .findFirst({
                     status: "published",
                     where: { slug },
+                    ...sanitizedQueryParams,
                 });
 
             if (!category) {

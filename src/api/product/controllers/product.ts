@@ -8,8 +8,10 @@ export default factories.createCoreController(
     "api::product.product",
     ({ strapi }) => ({
         async findOne(ctx) {
-            const { slug } = ctx.params;
+            await this.validateQuery(ctx);
 
+            const { slug } = ctx.params;
+            const sanitizedQueryParams = await this.sanitizeQuery(ctx);
             const entity = await strapi
                 .documents("api::product.product")
                 .findFirst({
@@ -17,12 +19,13 @@ export default factories.createCoreController(
                     where: { slug },
                     populate: {
                         image: true,
+                        category: true,
                     },
+                    ...sanitizedQueryParams,
                 });
 
             const sanitizedEntity = await this.sanitizeOutput(entity, ctx);
-
-            return this.transformResponse(sanitizedEntity);
+            return await this.transformResponse(sanitizedEntity);
         },
     })
 );
