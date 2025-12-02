@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_home_page_sub_hero_sections",
+  "info": {
+    "displayName": "Sub Hero Section"
+  },
+  "options": {},
+  "attributes": {
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category"
+    }
+  },
+  "config": {}
+}

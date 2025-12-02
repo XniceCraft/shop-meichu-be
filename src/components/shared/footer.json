@@ -5,10 +5,20 @@
   },
   "options": {},
   "attributes": {
-    "socialMedia": {
+    "runningText": {
+      "type": "text",
+      "required": false
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "navigationGroups": {
       "type": "component",
-      "component": "shared.social-media",
-      "repeatable": true
+      "component": "shared.navigation-group",
+      "repeatable": true,
+      "required": true,
+      "max": 3
     }
   },
   "config": {}

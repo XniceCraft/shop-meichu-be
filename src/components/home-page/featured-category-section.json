@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_home_page_featured_category_sections",
+  "info": {
+    "displayName": "Featured Category Section"
+  },
+  "options": {},
+  "attributes": {
+    "categories": {
+      "type": "component",
+      "component": "home-page-item.featured-category-item",
+      "repeatable": true,
+      "required": true
+    }
+  },
+  "config": {}
+}

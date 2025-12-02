@@ -29,6 +29,9 @@ importers:
       react-router-dom:
         specifier: ^6.0.0
         version: 6.30.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      strapi-keys:
+        specifier: ^1.2.4
+        version: 1.2.4
       styled-components:
         specifier: ^6.0.0
         version: 6.1.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -5651,6 +5654,10 @@ packages:
   stdin-discarder@0.2.2:
     resolution: {integrity: sha512-UhDfHmA92YAlNnCfhmq0VeNL5bDbiZGg7sZ2IvPsXubGkiNa9EC+tUTsjBRsYUAz87btI6/1wf4XoVvQ3uRnmQ==}
     engines: {node: '>=18'}
+
+  strapi-keys@1.2.4:
+    resolution: {integrity: sha512-vzdvji3o11P17fFQXMmLQ2Xm0/kUhVIe0om5tjl0k5KBzox4bH+xGa8AArA1tXK3tbRimdJwmgbq1pTVIOr+IA==}
+    hasBin: true
 
   stream-chain@2.2.5:
     resolution: {integrity: sha512-1TJmBx6aSWqZ4tx7aTpBDXK0/e2hhcNSTV8+CbFJtDjbb+I1mZ8lHit0Grw9GRT+6JbIrrDd8esncgBi8aBXGA==}
@@ -13208,6 +13215,8 @@ snapshots:
   statuses@2.0.1: {}
 
   stdin-discarder@0.2.2: {}
+
+  strapi-keys@1.2.4: {}
 
   stream-chain@2.2.5: {}
 

@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_home_page_trending_product_sections",
+  "info": {
+    "displayName": "Trending Product Section",
+    "icon": "check"
+  },
+  "options": {},
+  "attributes": {
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product"
+    }
+  },
+  "config": {}
+}

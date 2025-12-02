@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_home_page_recommendation_sections",
+  "info": {
+    "displayName": "Recommendation Section"
+  },
+  "options": {},
+  "attributes": {
+    "section": {
+      "type": "component",
+      "component": "shared.base-section",
+      "repeatable": false,
+      "required": true
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product"
+    }
+  },
+  "config": {}
+}

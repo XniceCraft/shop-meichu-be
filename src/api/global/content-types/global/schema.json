@@ -29,7 +29,14 @@
     "footer": {
       "type": "component",
       "component": "shared.footer",
-      "repeatable": false
+      "repeatable": false,
+      "required": true
+    },
+    "navbar": {
+      "type": "component",
+      "component": "shared.navbar",
+      "repeatable": false,
+      "required": true
     }
   }
 }

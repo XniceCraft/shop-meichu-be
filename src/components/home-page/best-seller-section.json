@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_home_page_hero_sections",
+  "collectionName": "components_home_page_best_seller_sections",
   "info": {
-    "displayName": "Hero Section"
+    "displayName": "Best Seller Section"
   },
   "options": {},
   "attributes": {
@@ -11,7 +11,7 @@
       "repeatable": false,
       "required": true
     },
-    "background": {
+    "media": {
       "type": "media",
       "multiple": false,
       "required": true,
@@ -19,10 +19,6 @@
         "images",
         "videos"
       ]
-    },
-    "runningText": {
-      "type": "text",
-      "required": false
     }
   },
   "config": {}

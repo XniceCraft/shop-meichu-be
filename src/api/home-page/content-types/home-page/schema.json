@@ -16,6 +16,77 @@
       "component": "home-page.hero-section",
       "repeatable": false,
       "required": true
+    },
+    "subHeroSection": {
+      "type": "component",
+      "component": "home-page.sub-hero-section",
+      "repeatable": true,
+      "required": true
+    },
+    "trendingProductSection": {
+      "type": "component",
+      "component": "home-page.trending-product-section",
+      "repeatable": false,
+      "required": true
+    },
+    "benefitSection": {
+      "type": "component",
+      "component": "home-page.benefit-section",
+      "repeatable": false,
+      "required": true
+    },
+    "philosophySection": {
+      "type": "component",
+      "component": "home-page.philosophy-section",
+      "repeatable": false,
+      "required": false
+    },
+    "collectionSection": {
+      "type": "component",
+      "component": "home-page.collection-section",
+      "repeatable": false
+    },
+    "bundleSection": {
+      "type": "component",
+      "component": "home-page.bundle-section",
+      "repeatable": false
+    },
+    "recommendationSection": {
+      "type": "component",
+      "component": "home-page.recommendation-section",
+      "repeatable": false
+    },
+    "trendingStyleSection": {
+      "type": "component",
+      "component": "home-page.trending-style-section",
+      "repeatable": false
+    },
+    "bestSellerSection": {
+      "type": "component",
+      "component": "home-page.best-seller-section",
+      "repeatable": false,
+      "required": false
+    },
+    "featuredCategorySection": {
+      "type": "component",
+      "component": "home-page.featured-category-section",
+      "repeatable": false
+    },
+    "reviewSection": {
+      "type": "component",
+      "component": "home-page.review-section",
+      "repeatable": false
+    },
+    "latestTrendSection": {
+      "type": "component",
+      "component": "home-page.latest-trend-section",
+      "repeatable": false
+    },
+    "faqSection": {
+      "type": "component",
+      "component": "home-page.faq-section",
+      "repeatable": false,
+      "required": false
     }
   }
 }

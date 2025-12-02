@@ -1,14 +1,13 @@
 {
-  "collectionName": "components_home_page_recomendation_sections",
+  "collectionName": "components_home_page_bundle_sections",
   "info": {
-    "displayName": "Recomendation Section",
-    "icon": "bold"
+    "displayName": "Bundle Section"
   },
   "options": {},
   "attributes": {
     "section": {
       "type": "component",
-      "component": "shared.section",
+      "component": "shared.base-section",
       "repeatable": false,
       "required": true
     },

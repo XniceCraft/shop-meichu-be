@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_home_page_item_featured_category_items",
+  "info": {
+    "displayName": "Featured Category Item"
+  },
+  "options": {},
+  "attributes": {
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

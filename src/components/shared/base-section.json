@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_shared_sections",
+  "collectionName": "components_shared_base_sections",
   "info": {
-    "displayName": "Section"
+    "displayName": "Base Section"
   },
   "options": {},
   "attributes": {
