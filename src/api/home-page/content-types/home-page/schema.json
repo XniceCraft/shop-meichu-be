@@ -20,7 +20,7 @@
     "subHeroSection": {
       "type": "component",
       "component": "home-page.sub-hero-section",
-      "repeatable": true,
+      "repeatable": false,
       "required": true
     },
     "trendingProductSection": {

@@ -557,7 +557,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
     >;
     subHeroSection: Schema.Attribute.Component<
       'home-page.sub-hero-section',
-      true
+      false
     > &
       Schema.Attribute.Required;
     trendingProductSection: Schema.Attribute.Component<
