@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_home_page_item_benefit_items",
+  "info": {
+    "displayName": "Benefit Item"
+  },
+  "options": {},
+  "attributes": {
+    "product": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product.product"
+    },
+    "badge": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

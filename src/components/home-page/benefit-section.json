@@ -17,10 +17,11 @@
       "repeatable": false,
       "required": true
     },
-    "products": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::product.product"
+    "items": {
+      "type": "component",
+      "component": "home-page-item.benefit-item",
+      "repeatable": true,
+      "required": true
     }
   },
   "config": {}

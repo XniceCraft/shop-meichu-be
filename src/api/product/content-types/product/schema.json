@@ -34,7 +34,7 @@
       "required": true,
       "min": 0
     },
-    "image": {
+    "images": {
       "type": "media",
       "multiple": true,
       "required": true,

@@ -9,10 +9,11 @@
       "type": "text",
       "required": true
     },
-    "categories": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::category.category"
+    "items": {
+      "type": "component",
+      "component": "home-page-item.sub-hero-category",
+      "repeatable": true,
+      "required": true
     }
   },
   "config": {}

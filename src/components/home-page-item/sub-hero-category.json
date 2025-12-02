@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_home_page_item_sub_hero_categories",
+  "info": {
+    "displayName": "Sub Hero Category"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
+    }
+  },
+  "config": {}
+}

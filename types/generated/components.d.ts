@@ -1,5 +1,16 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface HomePageItemBenefitItem extends Struct.ComponentSchema {
+  collectionName: 'components_home_page_item_benefit_items';
+  info: {
+    displayName: 'Benefit Item';
+  };
+  attributes: {
+    badge: Schema.Attribute.String & Schema.Attribute.Required;
+    product: Schema.Attribute.Relation<'oneToOne', 'api::product.product'>;
+  };
+}
+
 export interface HomePageItemCollection extends Struct.ComponentSchema {
   collectionName: 'components_home_page_item_collections';
   info: {
@@ -27,6 +38,17 @@ export interface HomePageItemFeaturedCategoryItem
   };
 }
 
+export interface HomePageItemSubHeroCategory extends Struct.ComponentSchema {
+  collectionName: 'components_home_page_item_sub_hero_categories';
+  info: {
+    displayName: 'Sub Hero Category';
+  };
+  attributes: {
+    category: Schema.Attribute.Relation<'oneToOne', 'api::category.category'>;
+    icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+  };
+}
+
 export interface HomePageBenefitSection extends Struct.ComponentSchema {
   collectionName: 'components_home_page_benefit_sections';
   info: {
@@ -35,7 +57,8 @@ export interface HomePageBenefitSection extends Struct.ComponentSchema {
   attributes: {
     ctaButton: Schema.Attribute.Component<'shared.cta-button', false> &
       Schema.Attribute.Required;
-    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
+    items: Schema.Attribute.Component<'home-page-item.benefit-item', true> &
+      Schema.Attribute.Required;
     section: Schema.Attribute.Component<'shared.base-section', false> &
       Schema.Attribute.Required;
   };
@@ -176,11 +199,12 @@ export interface HomePageSubHeroSection extends Struct.ComponentSchema {
     displayName: 'Sub Hero Section';
   };
   attributes: {
-    categories: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::category.category'
-    >;
     description: Schema.Attribute.Text & Schema.Attribute.Required;
+    items: Schema.Attribute.Component<
+      'home-page-item.sub-hero-category',
+      true
+    > &
+      Schema.Attribute.Required;
   };
 }
 
@@ -326,8 +350,10 @@ export interface SharedSocialMedia extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'home-page-item.benefit-item': HomePageItemBenefitItem;
       'home-page-item.collection': HomePageItemCollection;
       'home-page-item.featured-category-item': HomePageItemFeaturedCategoryItem;
+      'home-page-item.sub-hero-category': HomePageItemSubHeroCategory;
       'home-page.benefit-section': HomePageBenefitSection;
       'home-page.best-seller-section': HomePageBestSellerSection;
       'home-page.bundle-section': HomePageBundleSection;
