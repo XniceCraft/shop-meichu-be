@@ -27,7 +27,11 @@ export default factories.createCoreController(
             await this.validateQuery(ctx);
 
             const { slug } = ctx.params;
-            const sanitizedQueryParams = await this.sanitizeQuery(ctx);
+            const sanitizedQueryParams = await strapi.contentAPI.sanitize.query(
+                ctx.query,
+                strapi.contentType("api::product.product"),
+                { auth: ctx.state.auth }
+            );
             const page = Math.max(1, parseInt(ctx.query.page as string) || 1);
             const pageSize = Math.min(
                 100,
@@ -39,7 +43,6 @@ export default factories.createCoreController(
                 .findFirst({
                     status: "published",
                     where: { slug },
-                    ...sanitizedQueryParams,
                 });
 
             if (!category) {
@@ -55,6 +58,7 @@ export default factories.createCoreController(
                     },
                     start: (page - 1) * pageSize,
                     limit: pageSize,
+                    ...sanitizedQueryParams,
                 });
 
             const total = await strapi.documents("api::product.product").count({
