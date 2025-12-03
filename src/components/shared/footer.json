@@ -6,8 +6,9 @@
   "options": {},
   "attributes": {
     "runningText": {
-      "type": "text",
-      "required": false
+      "type": "component",
+      "component": "shared.running-text",
+      "repeatable": false
     },
     "description": {
       "type": "text",
@@ -17,8 +18,13 @@
       "type": "component",
       "component": "shared.navigation-group",
       "repeatable": true,
-      "required": true,
+      "required": false,
       "max": 3
+    },
+    "socialMedia": {
+      "type": "component",
+      "component": "shared.social-media",
+      "repeatable": true
     }
   },
   "config": {}

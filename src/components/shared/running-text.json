@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_shared_running_texts",
+  "info": {
+    "displayName": "Running Text"
+  },
+  "options": {},
+  "attributes": {
+    "firstText": {
+      "type": "text",
+      "required": true
+    },
+    "secondText": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

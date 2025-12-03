@@ -10,6 +10,12 @@
       "component": "home-page-item.collection",
       "repeatable": true,
       "required": true
+    },
+    "section": {
+      "type": "component",
+      "component": "shared.base-section",
+      "repeatable": false,
+      "required": true
     }
   },
   "config": {}

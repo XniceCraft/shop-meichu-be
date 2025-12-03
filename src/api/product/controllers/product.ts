@@ -18,7 +18,7 @@ export default factories.createCoreController(
                     status: "published",
                     where: { slug },
                     populate: {
-                        image: true,
+                        images: true,
                         category: true,
                     },
                     ...sanitizedQueryParams,

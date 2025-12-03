@@ -6,6 +6,12 @@
   },
   "options": {},
   "attributes": {
+    "section": {
+      "type": "component",
+      "component": "shared.base-section",
+      "repeatable": false,
+      "required": true
+    },
     "products": {
       "type": "relation",
       "relation": "oneToMany",

@@ -662,7 +662,7 @@ export interface ApiReviewReview extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    avatar: Schema.Attribute.Media<'images', true> & Schema.Attribute.Required;
+    avatar: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

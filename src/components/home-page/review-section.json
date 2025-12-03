@@ -5,6 +5,12 @@
   },
   "options": {},
   "attributes": {
+    "section": {
+      "type": "component",
+      "component": "shared.base-section",
+      "repeatable": false,
+      "required": true
+    },
     "reviews": {
       "type": "relation",
       "relation": "oneToMany",

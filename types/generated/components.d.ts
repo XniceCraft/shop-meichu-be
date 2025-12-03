@@ -97,6 +97,8 @@ export interface HomePageCollectionSection extends Struct.ComponentSchema {
   attributes: {
     collections: Schema.Attribute.Component<'home-page-item.collection', true> &
       Schema.Attribute.Required;
+    section: Schema.Attribute.Component<'shared.base-section', false> &
+      Schema.Attribute.Required;
   };
 }
 
@@ -190,6 +192,8 @@ export interface HomePageReviewSection extends Struct.ComponentSchema {
   };
   attributes: {
     reviews: Schema.Attribute.Relation<'oneToMany', 'api::review.review'>;
+    section: Schema.Attribute.Component<'shared.base-section', false> &
+      Schema.Attribute.Required;
   };
 }
 
@@ -216,6 +220,8 @@ export interface HomePageTrendingProductSection extends Struct.ComponentSchema {
   };
   attributes: {
     products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
+    section: Schema.Attribute.Component<'shared.base-section', false> &
+      Schema.Attribute.Required;
   };
 }
 
@@ -288,14 +294,14 @@ export interface SharedFooter extends Struct.ComponentSchema {
       'shared.navigation-group',
       true
     > &
-      Schema.Attribute.Required &
       Schema.Attribute.SetMinMax<
         {
           max: 3;
         },
         number
       >;
-    runningText: Schema.Attribute.Text;
+    runningText: Schema.Attribute.Component<'shared.running-text', false>;
+    socialMedia: Schema.Attribute.Component<'shared.social-media', true>;
   };
 }
 
@@ -330,6 +336,17 @@ export interface SharedNavigationGroup extends Struct.ComponentSchema {
   attributes: {
     navigations: Schema.Attribute.Component<'shared.navigation', true>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SharedRunningText extends Struct.ComponentSchema {
+  collectionName: 'components_shared_running_texts';
+  info: {
+    displayName: 'Running Text';
+  };
+  attributes: {
+    firstText: Schema.Attribute.Text & Schema.Attribute.Required;
+    secondText: Schema.Attribute.Text;
   };
 }
 
@@ -376,6 +393,7 @@ declare module '@strapi/strapi' {
       'shared.navbar': SharedNavbar;
       'shared.navigation': SharedNavigation;
       'shared.navigation-group': SharedNavigationGroup;
+      'shared.running-text': SharedRunningText;
       'shared.social-media': SharedSocialMedia;
     }
   }

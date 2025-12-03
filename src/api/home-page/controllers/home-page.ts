@@ -28,6 +28,7 @@ export default factories.createCoreController(
                         },
                         trendingProductSection: {
                             populate: {
+                                section: true,
                                 products: {
                                     sort: "createdAt:desc",
                                     populate: {
@@ -51,16 +52,31 @@ export default factories.createCoreController(
                             },
                         },
                         philosophySection: {
-                            populate: ["categories"],
+                            populate: {
+                                categories: {
+                                    populate: {
+                                        thumbnail: true,
+                                    },
+                                },
+                            },
                         },
                         collectionSection: {
                             populate: {
+                                section: true,
                                 collections: {
-                                    populate: [
-                                        "section",
-                                        "category",
-                                        "products",
-                                    ],
+                                    populate: {
+                                        section: true,
+                                        category: {
+                                            populate: {
+                                                thumbnail: true,
+                                            },
+                                        },
+                                        products: {
+                                            populate: {
+                                                images: true,
+                                            },
+                                        },
+                                    },
                                 },
                             },
                         },
@@ -99,10 +115,21 @@ export default factories.createCoreController(
                             populate: ["section", "media"],
                         },
                         featuredCategorySection: {
-                            populate: ["categories"],
+                            populate: {
+                                categories: {
+                                    populate: {
+                                        category: {
+                                            populate: {
+                                                thumbnail: true,
+                                            },
+                                        },
+                                    },
+                                },
+                            },
                         },
                         reviewSection: {
                             populate: {
+                                section: true,
                                 reviews: {
                                     populate: {
                                         avatar: true,
@@ -129,93 +156,5 @@ export default factories.createCoreController(
 
             return this.transformResponse(sanitizedEntity);
         },
-        // async find(ctx) {
-        //     await this.validateQuery(ctx);
-
-        //     const query = await this.sanitizeQuery(ctx);
-        //     const entity = await strapi
-        //         .documents("api::home-page.home-page")
-        //         .findFirst({
-        //             status: "published",
-        //             populate: {
-        //                 heroSection: {
-        //                     populate: ["section", "background"],
-        //                 },
-        //                 subHeroSection: {
-        //                     populate: ["categories"],
-        //                 },
-        //                 trendingProductSection: {
-        //                     populate: {
-        //                         products: {
-        //                             sort: "createdAt:desc",
-        //                             populate: {
-        //                                 images: true,
-        //                             },
-        //                         },
-        //                     },
-        //                 },
-        //                 benefitSection: {
-        //                     populate: {
-        //                         section: true,
-        //                         ctaButton: true,
-        //                         products: {
-        //                             sort: "createdAt:desc",
-        //                             populate: {
-        //                                 images: true,
-        //                             },
-        //                         },
-        //                     },
-        //                 },
-        //                 philosophySection: {
-        //                     populate: ["categories"],
-        //                 },
-        //                 collectionSection: {
-        //                     populate: {
-        //                         collections: {
-        //                             populate: [
-        //                                 "section",
-        //                                 "category",
-        //                                 "products",
-        //                             ],
-        //                         },
-        //                     },
-        //                 },
-        //                 bundleSection: {
-        //                     populate: ["section", "products"],
-        //                 },
-        //                 recommendationSection: {
-        //                     populate: ["section", "products"],
-        //                 },
-        //                 trendingStyleSection: {
-        //                     populate: ["section", "ctaButton", "products"],
-        //                 },
-        //                 bestSellerSection: {
-        //                     populate: ["section", "media"],
-        //                 },
-        //                 featuredCategorySection: {
-        //                     populate: ["categories"],
-        //                 },
-        //                 reviewSection: {
-        //                     populate: ["reviews"],
-        //                 },
-        //                 latestTrendSection: {
-        //                     populate: [
-        //                         "section",
-        //                         "ctaButton",
-        //                         "leftImage",
-        //                         "rightImage",
-        //                     ],
-        //                 },
-        //                 faqSection: {
-        //                     populate: ["section", "questions"],
-        //                 },
-        //             },
-        //             ...query,
-        //         });
-
-        //     const sanitizedEntity = await this.sanitizeOutput(entity, ctx);
-
-        //     return this.transformResponse(sanitizedEntity);
-        // },
     })
 );
