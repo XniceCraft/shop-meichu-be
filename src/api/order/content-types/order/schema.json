@@ -40,6 +40,9 @@
     "totalPrice": {
       "type": "integer",
       "required": true
+    },
+    "note": {
+      "type": "text"
     }
   }
 }

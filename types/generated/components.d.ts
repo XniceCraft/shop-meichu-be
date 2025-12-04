@@ -245,8 +245,9 @@ export interface OrderOrderItem extends Struct.ComponentSchema {
     displayName: 'Order Item';
   };
   attributes: {
+    accumulatedPrice: Schema.Attribute.Integer & Schema.Attribute.Required;
     product: Schema.Attribute.Relation<'oneToOne', 'api::product.product'>;
-    quantity: Schema.Attribute.Integer;
+    quantity: Schema.Attribute.Integer & Schema.Attribute.Required;
   };
 }
 
@@ -302,6 +303,18 @@ export interface SharedFooter extends Struct.ComponentSchema {
       >;
     runningText: Schema.Attribute.Component<'shared.running-text', false>;
     socialMedia: Schema.Attribute.Component<'shared.social-media', true>;
+  };
+}
+
+export interface SharedHeading extends Struct.ComponentSchema {
+  collectionName: 'components_shared_headings';
+  info: {
+    displayName: 'Heading';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    thumbnail: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -390,6 +403,7 @@ declare module '@strapi/strapi' {
       'shared.base-section': SharedBaseSection;
       'shared.cta-button': SharedCtaButton;
       'shared.footer': SharedFooter;
+      'shared.heading': SharedHeading;
       'shared.navbar': SharedNavbar;
       'shared.navigation': SharedNavigation;
       'shared.navigation-group': SharedNavigationGroup;

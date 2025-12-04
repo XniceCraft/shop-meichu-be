@@ -28,6 +28,12 @@
       "targetField": "name",
       "required": false
     },
+    "heading": {
+      "type": "component",
+      "component": "shared.heading",
+      "repeatable": false,
+      "required": true
+    },
     "products": {
       "type": "relation",
       "relation": "oneToMany",
