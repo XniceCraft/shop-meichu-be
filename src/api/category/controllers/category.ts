@@ -16,6 +16,13 @@ export default factories.createCoreController(
                 .findFirst({
                     status: "published",
                     where: { slug },
+                    populate: {
+                        heading: {
+                            populate: {
+                                thumbnail: true,
+                            },
+                        },
+                    },
                     ...sanitizedQueryParams,
                 });
 

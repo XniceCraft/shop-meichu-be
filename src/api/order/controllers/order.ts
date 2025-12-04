@@ -10,7 +10,7 @@ export default factories.createCoreController(
     ({ strapi }) => ({
         async userCreateOrder(ctx) {
             try {
-                const { buyerName, contact, orderItems } =
+                const { buyerName, contact, orderItems, note } =
                     await createOrderSchema.validate(ctx.request.body);
 
                 const orderedItemIds = [
@@ -109,6 +109,7 @@ export default factories.createCoreController(
                                         ),
                                 })),
                                 totalPrice,
+                                note,
                             },
                             populate: {
                                 items: true,

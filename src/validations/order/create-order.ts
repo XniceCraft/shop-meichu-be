@@ -17,6 +17,8 @@ export const createOrderSchema = yup.object({
             "Must be a valid email or phone number"
         ),
 
+    note: yup.string().optional().max(4096, "Note is too long"),
+
     orderItems: yup
         .array()
         .of(
