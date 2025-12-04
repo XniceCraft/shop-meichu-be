@@ -10,8 +10,13 @@
       "relation": "oneToOne",
       "target": "api::product.product"
     },
-    "count": {
-      "type": "integer"
+    "quantity": {
+      "type": "integer",
+      "required": true
+    },
+    "accumulatedPrice": {
+      "type": "integer",
+      "required": true
     }
   },
   "config": {}

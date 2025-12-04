@@ -245,8 +245,8 @@ export interface OrderOrderItem extends Struct.ComponentSchema {
     displayName: 'Order Item';
   };
   attributes: {
-    count: Schema.Attribute.Integer;
     product: Schema.Attribute.Relation<'oneToOne', 'api::product.product'>;
+    quantity: Schema.Attribute.Integer;
   };
 }
 

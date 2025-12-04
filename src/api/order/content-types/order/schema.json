@@ -36,6 +36,10 @@
       "component": "order.order-item",
       "repeatable": true,
       "required": true
+    },
+    "totalPrice": {
+      "type": "integer",
+      "required": true
     }
   }
 }
