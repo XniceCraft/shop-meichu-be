@@ -17,7 +17,15 @@ export default factories.createCoreController(
                 documentId: id,
                 status: "published",
                 populate: {
-                    items: true,
+                    items: {
+                        populate: {
+                            product: {
+                                populate: {
+                                    images: true
+                                }
+                            }
+                        }
+                    },
                 },
                 ...sanitizedQueryParams,
             });

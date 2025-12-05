@@ -17,6 +17,7 @@ export default factories.createCoreController(
                     status: "published",
                     where: { slug },
                     populate: {
+                        thumbnail: true,
                         heading: {
                             populate: {
                                 thumbnail: true,
