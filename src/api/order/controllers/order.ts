@@ -8,6 +8,24 @@ import { createOrderSchema } from "../../../validations/order/create-order";
 export default factories.createCoreController(
     "api::order.order",
     ({ strapi }) => ({
+        async findOne(ctx) {
+            await this.validateQuery(ctx);
+
+            const { id } = ctx.params;
+            const sanitizedQueryParams = await this.sanitizeQuery(ctx);
+            const entity = await strapi.documents("api::order.order").findOne({
+                documentId: id,
+                status: "published",
+                populate: {
+                    items: true,
+                },
+                ...sanitizedQueryParams,
+            });
+
+            const sanitizedEntity = await this.sanitizeOutput(entity, ctx);
+            return await this.transformResponse(sanitizedEntity);
+        },
+
         async userCreateOrder(ctx) {
             try {
                 const { buyerName, contact, orderItems, note } =
@@ -88,6 +106,7 @@ export default factories.createCoreController(
                                         name: product.name, // Needed for slug
                                         stock: product.stock - item.quantity,
                                     },
+                                    sold: (product.sold || 0) + item.quantity,
                                 });
                         })
                     );
@@ -119,7 +138,7 @@ export default factories.createCoreController(
                     return createdOrder;
                 });
 
-                return order;
+                return await this.transformResponse(order, null);
             } catch (error) {
                 if (error.name === "ValidationError") {
                     return ctx.badRequest("Validation failed", {
@@ -141,11 +160,11 @@ export default factories.createCoreController(
 
         async nextAction(ctx) {
             try {
-                const { documentId } = ctx.params;
+                const { id } = ctx.params;
                 const order = await strapi
                     .documents("api::order.order")
                     .findOne({
-                        documentId,
+                        documentId: id,
                     });
 
                 if (!order) {
@@ -181,7 +200,7 @@ export default factories.createCoreController(
                 const updatedOrder = await strapi
                     .documents("api::order.order")
                     .update({
-                        documentId,
+                        documentId: id,
                         data: {
                             orderStatus: nextOrderStatus,
                         },
@@ -198,13 +217,14 @@ export default factories.createCoreController(
                 return ctx.internalServerError("Failed to update order");
             }
         },
+
         async cancelOrder(ctx) {
             try {
-                const { documentId } = ctx.params;
+                const { id } = ctx.params;
                 const order = await strapi
                     .documents("api::order.order")
                     .findOne({
-                        documentId,
+                        documentId: id,
                     });
 
                 if (!order) {
@@ -225,7 +245,7 @@ export default factories.createCoreController(
                 const cancelledOrder = await strapi
                     .documents("api::order.order")
                     .update({
-                        documentId,
+                        documentId: id,
                         data: {
                             orderStatus: "cancelled",
                         },

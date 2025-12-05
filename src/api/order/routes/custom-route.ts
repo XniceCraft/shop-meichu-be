@@ -7,12 +7,12 @@ export default {
         },
         {
             method: "POST",
-            path: "/orders/cancel/:documentId",
+            path: "/orders/:id/cancel",
             handler: "order.cancelOrder",
         },
         {
             method: "POST",
-            path: "/orders/next-action/:documentId",
+            path: "/orders/:id/next-action",
             handler: "order.nextAction",
         },
     ],
