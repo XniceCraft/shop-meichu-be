@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "collections",
+  "info": {
+    "singularName": "collection",
+    "pluralName": "collections",
+    "displayName": "Collection"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "component",
+      "component": "shared.heading",
+      "repeatable": false,
+      "required": true
+    }
+  }
+}
