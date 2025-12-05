@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_about_us_page_cards",
+  "info": {
+    "displayName": "Card"
+  },
+  "options": {},
+  "attributes": {
+    "header": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "ctaButton": {
+      "type": "component",
+      "component": "shared.cta-button",
+      "repeatable": true,
+      "required": true
+    }
+  },
+  "config": {}
+}

@@ -1,5 +1,49 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface AboutUsPageCard extends Struct.ComponentSchema {
+  collectionName: 'components_about_us_page_cards';
+  info: {
+    displayName: 'Card';
+  };
+  attributes: {
+    ctaButton: Schema.Attribute.Component<'shared.cta-button', true> &
+      Schema.Attribute.Required;
+    description: Schema.Attribute.Text;
+    header: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface AboutUsPageMessageSection extends Struct.ComponentSchema {
+  collectionName: 'components_about_us_page_message_sections';
+  info: {
+    displayName: 'Message Section';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    section: Schema.Attribute.Component<'shared.base-section', false> &
+      Schema.Attribute.Required;
+  };
+}
+
+export interface AboutUsPageVideoSection extends Struct.ComponentSchema {
+  collectionName: 'components_about_us_page_video_sections';
+  info: {
+    displayName: 'Video Section';
+  };
+  attributes: {
+    cards: Schema.Attribute.Component<'about-us-page.card', true> &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 2;
+          min: 0;
+        },
+        number
+      >;
+    message: Schema.Attribute.Text & Schema.Attribute.Required;
+    video: Schema.Attribute.Media<'videos'> & Schema.Attribute.Required;
+  };
+}
+
 export interface HomePageItemBenefitItem extends Struct.ComponentSchema {
   collectionName: 'components_home_page_item_benefit_items';
   info: {
@@ -55,6 +99,8 @@ export interface HomePageBenefitSection extends Struct.ComponentSchema {
     displayName: 'Benefit Section';
   };
   attributes: {
+    backgroundImage: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.Required;
     ctaButton: Schema.Attribute.Component<'shared.cta-button', false> &
       Schema.Attribute.Required;
     items: Schema.Attribute.Component<'home-page-item.benefit-item', true> &
@@ -380,6 +426,9 @@ export interface SharedSocialMedia extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'about-us-page.card': AboutUsPageCard;
+      'about-us-page.message-section': AboutUsPageMessageSection;
+      'about-us-page.video-section': AboutUsPageVideoSection;
       'home-page-item.benefit-item': HomePageItemBenefitItem;
       'home-page-item.collection': HomePageItemCollection;
       'home-page-item.featured-category-item': HomePageItemFeaturedCategoryItem;

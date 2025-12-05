@@ -22,6 +22,14 @@
       "component": "home-page-item.benefit-item",
       "repeatable": true,
       "required": true
+    },
+    "backgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     }
   },
   "config": {}

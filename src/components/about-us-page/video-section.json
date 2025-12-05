@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_about_us_page_video_sections",
+  "info": {
+    "displayName": "Video Section"
+  },
+  "options": {},
+  "attributes": {
+    "message": {
+      "type": "text",
+      "required": true
+    },
+    "video": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "videos"
+      ]
+    },
+    "cards": {
+      "type": "component",
+      "component": "about-us-page.card",
+      "repeatable": true,
+      "min": 0,
+      "max": 2
+    }
+  },
+  "config": {}
+}
