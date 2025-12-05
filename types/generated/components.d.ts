@@ -6,7 +6,7 @@ export interface AboutUsPageCard extends Struct.ComponentSchema {
     displayName: 'Card';
   };
   attributes: {
-    ctaButton: Schema.Attribute.Component<'shared.cta-button', true> &
+    ctaButton: Schema.Attribute.Component<'shared.cta-button', false> &
       Schema.Attribute.Required;
     description: Schema.Attribute.Text;
     header: Schema.Attribute.String & Schema.Attribute.Required;

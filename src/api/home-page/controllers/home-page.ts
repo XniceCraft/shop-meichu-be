@@ -41,6 +41,7 @@ export default factories.createCoreController(
                             populate: {
                                 section: true,
                                 ctaButton: true,
+                                backgroundImage: true,
                                 items: {
                                     populate: {
                                         product: {
