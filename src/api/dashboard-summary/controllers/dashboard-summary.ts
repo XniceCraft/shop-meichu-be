@@ -3,19 +3,51 @@
  */
 
 export default {
-    getSummary: async (ctx, next) => {
+    getSummary: async (ctx) => {
         try {
-            const totalProducts = await strapi
-                .query("api::product.product")
-                .count();
-            const totalCategories = await strapi
-                .query("api::category.category")
-                .count();
+            const [
+                totalProducts,
+                totalCategories,
+                orderPending,
+                orderConfirmed,
+                orderInProgress,
+                orderCompleted,
+                orderCancelled,
+            ] = await Promise.all([
+                strapi.documents("api::product.product").count({
+                    status: "published",
+                }),
+                strapi.documents("api::category.category").count({
+                    status: "published",
+                }),
+                strapi.documents("api::order.order").count({
+                    filters: { orderStatus: { $eq: "pending" } },
+                }),
+                strapi.documents("api::order.order").count({
+                    filters: { orderStatus: { $eq: "confirmed" } },
+                }),
+                strapi.documents("api::order.order").count({
+                    filters: { orderStatus: { $eq: "in_progress" } },
+                }),
+                strapi.documents("api::order.order").count({
+                    filters: { orderStatus: { $eq: "completed" } },
+                }),
+                strapi.documents("api::order.order").count({
+                    filters: { orderStatus: { $eq: "cancelled" } },
+                }),
+            ]);
 
             ctx.body = {
                 data: {
                     totalProducts,
                     totalCategories,
+                    orderStatus: {
+                        pending: orderPending,
+                        confirmed: orderConfirmed,
+                        inProgress: orderInProgress,
+                        completed: orderCompleted,
+                        cancelled: orderCancelled,
+                    },
                 },
                 meta: {},
             };

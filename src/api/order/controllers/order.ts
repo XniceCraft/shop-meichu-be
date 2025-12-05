@@ -138,5 +138,101 @@ export default factories.createCoreController(
                 return ctx.internalServerError("Failed to create order");
             }
         },
+
+        async nextAction(ctx) {
+            try {
+                const { documentId } = ctx.params;
+                const order = await strapi
+                    .documents("api::order.order")
+                    .findOne({
+                        documentId,
+                    });
+
+                if (!order) {
+                    return ctx.notFound("Order not found");
+                }
+
+                switch (order.orderStatus) {
+                    case "cancelled":
+                        return ctx.badRequest("Order is already cancelled");
+                    case "completed":
+                        return ctx.badRequest("Order is already completed");
+                }
+
+                const nextOrderStatus =
+                    order.orderStatus === "pending"
+                        ? "in_progress"
+                        : "completed";
+
+                const updatedOrder = await strapi
+                    .documents("api::order.order")
+                    .update({
+                        documentId,
+                        data: {
+                            orderStatus: nextOrderStatus,
+                        },
+                    });
+
+                const sanitizedEntity = await this.sanitizeOutput(
+                    updatedOrder,
+                    ctx
+                );
+
+                return await this.transformResponse(sanitizedEntity, null);
+            } catch (error) {
+                strapi.log.error("Order next action failed:", error);
+                return ctx.internalServerError("Failed to update order");
+            }
+        },
+        async cancelOrder(ctx) {
+            try {
+                const { documentId } = ctx.params;
+                const order = await strapi
+                    .documents("api::order.order")
+                    .findOne({
+                        documentId,
+                    });
+
+                if (!order) {
+                    return ctx.notFound("Order not found");
+                }
+
+                switch (order.orderStatus) {
+                    case "cancelled":
+                        return ctx.badRequest("Order is already cancelled");
+                    case "completed":
+                        return ctx.badRequest("Order is already completed");
+                    case "in_progress":
+                        return ctx.badRequest(
+                            "Order is already in progress. Please contact our support"
+                        );
+                }
+
+                const cancelledOrder = await strapi
+                    .documents("api::order.order")
+                    .update({
+                        documentId,
+                        data: {
+                            orderStatus: "cancelled",
+                        },
+                    });
+
+                const sanitizedEntity = await this.sanitizeOutput(
+                    cancelledOrder,
+                    ctx
+                );
+
+                const response = await this.transformResponse(
+                    sanitizedEntity,
+                    null
+                );
+                response["message"] = "Successfully cancelled order";
+
+                return response;
+            } catch (error) {
+                strapi.log.error("Order cancel failed:", error);
+                return ctx.internalServerError("Failed to cancel order");
+            }
+        },
     })
 );
