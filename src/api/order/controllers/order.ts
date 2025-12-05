@@ -159,10 +159,24 @@ export default factories.createCoreController(
                         return ctx.badRequest("Order is already completed");
                 }
 
-                const nextOrderStatus =
-                    order.orderStatus === "pending"
-                        ? "in_progress"
-                        : "completed";
+                let nextOrderStatus:
+                    | "pending"
+                    | "confirmed"
+                    | "in_progress"
+                    | "completed"
+                    | "cancelled" = "pending";
+
+                switch (order.orderStatus) {
+                    case "pending":
+                        nextOrderStatus = "confirmed";
+                        break;
+                    case "confirmed":
+                        nextOrderStatus = "in_progress";
+                        break;
+                    case "in_progress":
+                        nextOrderStatus = "completed";
+                        break;
+                }
 
                 const updatedOrder = await strapi
                     .documents("api::order.order")
