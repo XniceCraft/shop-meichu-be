@@ -15,7 +15,7 @@
     "ctaButton": {
       "type": "component",
       "component": "shared.cta-button",
-      "repeatable": true,
+      "repeatable": false,
       "required": true
     }
   },
