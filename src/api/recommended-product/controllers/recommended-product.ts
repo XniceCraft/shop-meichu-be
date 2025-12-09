@@ -18,7 +18,6 @@ export default {
         const recommendedProducts = await strapi
             .documents("api::product.product")
             .findMany({
-                sort: "sold:desc",
                 limit: 6,
                 populate: {
                     images: true,

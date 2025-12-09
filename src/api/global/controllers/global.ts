@@ -47,7 +47,14 @@ export default factories.createCoreController(
                     status: "published",
                     populate: {
                         navbar: {
-                            populate: ["navigations"],
+                            populate: {
+                                brand: {
+                                    populate: {
+                                        icon: true,
+                                    },
+                                },
+                                navigations: true,
+                            },
                         },
                     },
                     fields: [],

@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "requests",
+  "info": {
+    "singularName": "request",
+    "pluralName": "requests",
+    "displayName": "Request"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "buyerName": {
+      "type": "string",
+      "maxLength": 255,
+      "required": true
+    },
+    "contactPlatform": {
+      "type": "enumeration",
+      "required": true,
+      "default": "email",
+      "enum": [
+        "email",
+        "instagram",
+        "facebook",
+        "whatsapp"
+      ]
+    },
+    "contact": {
+      "type": "string",
+      "required": true
+    },
+    "referenceImages": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "requestStatus": {
+      "type": "enumeration",
+      "required": true,
+      "default": "pending",
+      "enum": [
+        "pending",
+        "confirmed",
+        "in_progress",
+        "completed",
+        "cancelled"
+      ]
+    }
+  }
+}

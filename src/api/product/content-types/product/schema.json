@@ -7,7 +7,7 @@
     "displayName": "Product"
   },
   "options": {
-    "draftAndPublish": false
+    "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
@@ -20,8 +20,17 @@
       "targetField": "name",
       "required": false
     },
-    "description": {
-      "type": "text",
+    "fields": {
+      "type": "component",
+      "component": "shared.field",
+      "repeatable": true,
+      "required": true,
+      "max": 4
+    },
+    "backgroundColor": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
       "required": true
     },
     "price": {
@@ -29,16 +38,9 @@
       "required": true,
       "unique": false
     },
-    "stock": {
-      "type": "integer",
-      "required": true,
-      "min": 0
-    },
-    "sold": {
-      "type": "integer",
-      "required": false,
-      "default": 0,
-      "min": 0
+    "origin": {
+      "type": "string",
+      "required": false
     },
     "images": {
       "type": "media",

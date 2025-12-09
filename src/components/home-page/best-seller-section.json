@@ -11,6 +11,12 @@
       "repeatable": false,
       "required": true
     },
+    "runningText": {
+      "type": "component",
+      "component": "shared.running-text",
+      "repeatable": false,
+      "required": true
+    },
     "media": {
       "type": "media",
       "multiple": false,
@@ -19,6 +25,10 @@
         "images",
         "videos"
       ]
+    },
+    "ctaLink": {
+      "type": "string",
+      "required": true
     }
   },
   "config": {}

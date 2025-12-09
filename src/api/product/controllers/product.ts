@@ -18,6 +18,7 @@ export default factories.createCoreController(
                     status: "published",
                     where: { slug },
                     populate: {
+                        fields: true,
                         images: true,
                         category: true,
                     },
@@ -26,6 +27,30 @@ export default factories.createCoreController(
 
             const sanitizedEntity = await this.sanitizeOutput(entity, ctx);
             return await this.transformResponse(sanitizedEntity);
+        },
+
+        async delete(ctx) {
+            await this.validateQuery(ctx);
+
+            const { slug } = ctx.params;
+            const entity = await strapi
+                .documents("api::product.product")
+                .findFirst({
+                    status: "published",
+                    where: { slug },
+                });
+
+            if (!entity) return ctx.notFound("Product not found");
+
+            await strapi.documents("api::product.product").update({
+                documentId: entity.documentId,
+                data: {
+                    publishedAt: null,
+                },
+            });
+
+            ctx.status = 204;
+            ctx.body = null;
         },
     })
 );

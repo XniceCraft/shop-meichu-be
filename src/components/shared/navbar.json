@@ -5,6 +5,12 @@
   },
   "options": {},
   "attributes": {
+    "brand": {
+      "type": "component",
+      "component": "shared.brand",
+      "repeatable": false,
+      "required": true
+    },
     "navigations": {
       "type": "component",
       "component": "shared.navigation",

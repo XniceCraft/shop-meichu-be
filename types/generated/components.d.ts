@@ -116,7 +116,10 @@ export interface HomePageBestSellerSection extends Struct.ComponentSchema {
     displayName: 'Best Seller Section';
   };
   attributes: {
+    ctaLink: Schema.Attribute.String & Schema.Attribute.Required;
     media: Schema.Attribute.Media<'images' | 'videos'> &
+      Schema.Attribute.Required;
+    runningText: Schema.Attribute.Component<'shared.running-text', false> &
       Schema.Attribute.Required;
     section: Schema.Attribute.Component<'shared.base-section', false> &
       Schema.Attribute.Required;
@@ -285,18 +288,6 @@ export interface HomePageTrendingStyleSection extends Struct.ComponentSchema {
   };
 }
 
-export interface OrderOrderItem extends Struct.ComponentSchema {
-  collectionName: 'components_order_order_items';
-  info: {
-    displayName: 'Order Item';
-  };
-  attributes: {
-    accumulatedPrice: Schema.Attribute.Integer & Schema.Attribute.Required;
-    product: Schema.Attribute.Relation<'oneToOne', 'api::product.product'>;
-    quantity: Schema.Attribute.Integer & Schema.Attribute.Required;
-  };
-}
-
 export interface SharedAccordion extends Struct.ComponentSchema {
   collectionName: 'components_shared_accordions';
   info: {
@@ -319,6 +310,17 @@ export interface SharedBaseSection extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedBrand extends Struct.ComponentSchema {
+  collectionName: 'components_shared_brands';
+  info: {
+    displayName: 'Brand';
+  };
+  attributes: {
+    icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedCtaButton extends Struct.ComponentSchema {
   collectionName: 'components_shared_cta_buttons';
   info: {
@@ -327,6 +329,17 @@ export interface SharedCtaButton extends Struct.ComponentSchema {
   attributes: {
     title: Schema.Attribute.String & Schema.Attribute.Required;
     url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SharedField extends Struct.ComponentSchema {
+  collectionName: 'components_shared_fields';
+  info: {
+    displayName: 'Field';
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -370,6 +383,8 @@ export interface SharedNavbar extends Struct.ComponentSchema {
     displayName: 'Navbar';
   };
   attributes: {
+    brand: Schema.Attribute.Component<'shared.brand', false> &
+      Schema.Attribute.Required;
     navigations: Schema.Attribute.Component<'shared.navigation', true> &
       Schema.Attribute.Required;
   };
@@ -447,10 +462,11 @@ declare module '@strapi/strapi' {
       'home-page.sub-hero-section': HomePageSubHeroSection;
       'home-page.trending-product-section': HomePageTrendingProductSection;
       'home-page.trending-style-section': HomePageTrendingStyleSection;
-      'order.order-item': OrderOrderItem;
       'shared.accordion': SharedAccordion;
       'shared.base-section': SharedBaseSection;
+      'shared.brand': SharedBrand;
       'shared.cta-button': SharedCtaButton;
+      'shared.field': SharedField;
       'shared.footer': SharedFooter;
       'shared.heading': SharedHeading;
       'shared.navbar': SharedNavbar;

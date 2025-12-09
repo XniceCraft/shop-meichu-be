@@ -8,11 +8,8 @@ export default {
             const [
                 totalProducts,
                 totalCategories,
-                orderPending,
-                orderConfirmed,
-                orderInProgress,
-                orderCompleted,
-                orderCancelled,
+                totalSubscriptions,
+                totalRequests,
             ] = await Promise.all([
                 strapi.documents("api::product.product").count({
                     status: "published",
@@ -20,20 +17,11 @@ export default {
                 strapi.documents("api::category.category").count({
                     status: "published",
                 }),
-                strapi.documents("api::order.order").count({
-                    filters: { orderStatus: { $eq: "pending" } },
+                strapi.documents("api::subscription.subscription").count({
+                    status: "published",
                 }),
-                strapi.documents("api::order.order").count({
-                    filters: { orderStatus: { $eq: "confirmed" } },
-                }),
-                strapi.documents("api::order.order").count({
-                    filters: { orderStatus: { $eq: "in_progress" } },
-                }),
-                strapi.documents("api::order.order").count({
-                    filters: { orderStatus: { $eq: "completed" } },
-                }),
-                strapi.documents("api::order.order").count({
-                    filters: { orderStatus: { $eq: "cancelled" } },
+                strapi.documents("api::request.request").count({
+                    status: "published",
                 }),
             ]);
 
@@ -41,13 +29,8 @@ export default {
                 data: {
                     totalProducts,
                     totalCategories,
-                    orderStatus: {
-                        pending: orderPending,
-                        confirmed: orderConfirmed,
-                        inProgress: orderInProgress,
-                        completed: orderCompleted,
-                        cancelled: orderCancelled,
-                    },
+                    totalSubscriptions,
+                    totalRequests,
                 },
                 meta: {},
             };
