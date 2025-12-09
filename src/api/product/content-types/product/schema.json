@@ -13,6 +13,7 @@
   "attributes": {
     "name": {
       "type": "string",
+      "maxLength": 255,
       "required": true
     },
     "slug": {
@@ -40,6 +41,7 @@
     },
     "origin": {
       "type": "string",
+      "maxLength": 300,
       "required": false
     },
     "images": {
