@@ -828,13 +828,12 @@ export interface ApiReviewReview extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiSubscriptionSubscription
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'subscriptions';
+export interface ApiSubscriberSubscriber extends Struct.CollectionTypeSchema {
+  collectionName: 'subscribers';
   info: {
-    displayName: 'Subscription';
-    pluralName: 'subscriptions';
-    singularName: 'subscription';
+    displayName: 'Subscriber';
+    pluralName: 'subscribers';
+    singularName: 'subscriber';
   };
   options: {
     draftAndPublish: false;
@@ -847,7 +846,7 @@ export interface ApiSubscriptionSubscription
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::subscription.subscription'
+      'api::subscriber.subscriber'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
@@ -1376,7 +1375,7 @@ declare module '@strapi/strapi' {
       'api::product.product': ApiProductProduct;
       'api::request.request': ApiRequestRequest;
       'api::review.review': ApiReviewReview;
-      'api::subscription.subscription': ApiSubscriptionSubscription;
+      'api::subscriber.subscriber': ApiSubscriberSubscriber;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

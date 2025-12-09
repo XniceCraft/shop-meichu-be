@@ -8,7 +8,7 @@ export default {
             const [
                 totalProducts,
                 totalCategories,
-                totalSubscriptions,
+                totalSubscribers,
                 totalRequests,
             ] = await Promise.all([
                 strapi.documents("api::product.product").count({
@@ -17,7 +17,7 @@ export default {
                 strapi.documents("api::category.category").count({
                     status: "published",
                 }),
-                strapi.documents("api::subscription.subscription").count({
+                strapi.documents("api::subscriber.subscriber").count({
                     status: "published",
                 }),
                 strapi.documents("api::request.request").count({
@@ -29,7 +29,7 @@ export default {
                 data: {
                     totalProducts,
                     totalCategories,
-                    totalSubscriptions,
+                    totalSubscribers,
                     totalRequests,
                 },
                 meta: {},
