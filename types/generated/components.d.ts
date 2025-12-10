@@ -338,7 +338,7 @@ export interface SharedField extends Struct.ComponentSchema {
     displayName: 'Field';
   };
   attributes: {
-    content: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    content: Schema.Attribute.RichText & Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }

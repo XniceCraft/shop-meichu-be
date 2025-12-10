@@ -113,7 +113,7 @@ export default factories.createCoreController(
                             },
                         },
                         bestSellerSection: {
-                            populate: ["section", "media"],
+                            populate: ["section", "media", "runningText"],
                         },
                         featuredCategorySection: {
                             populate: {
