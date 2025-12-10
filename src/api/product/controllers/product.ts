@@ -33,6 +33,8 @@ export default factories.createCoreController(
             await this.validateQuery(ctx);
 
             const { slug } = ctx.params;
+            if (!slug) return ctx.notFound("Slug not defined");
+
             const entity = await strapi
                 .documents("api::product.product")
                 .findFirst({
@@ -45,6 +47,7 @@ export default factories.createCoreController(
             await strapi.documents("api::product.product").update({
                 documentId: entity.documentId,
                 data: {
+                    name: entity.name, // For slug purpose
                     publishedAt: null,
                 },
             });

@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_side_texts",
+  "info": {
+    "displayName": "Side Text"
+  },
+  "options": {},
+  "attributes": {
+    "left": {
+      "type": "string",
+      "required": true
+    },
+    "right": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

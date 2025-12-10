@@ -28,7 +28,7 @@ export default factories.createCoreController(
                         },
                         trendingProductSection: {
                             populate: {
-                                section: true,
+                                sideText: true,
                                 products: {
                                     sort: "createdAt:desc",
                                     populate: {

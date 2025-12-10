@@ -269,7 +269,7 @@ export interface HomePageTrendingProductSection extends Struct.ComponentSchema {
   };
   attributes: {
     products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
-    section: Schema.Attribute.Component<'shared.base-section', false> &
+    sideText: Schema.Attribute.Component<'shared.side-text', false> &
       Schema.Attribute.Required;
   };
 }
@@ -424,6 +424,17 @@ export interface SharedRunningText extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedSideText extends Struct.ComponentSchema {
+  collectionName: 'components_shared_side_texts';
+  info: {
+    displayName: 'Side Text';
+  };
+  attributes: {
+    left: Schema.Attribute.String & Schema.Attribute.Required;
+    right: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedSocialMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_social_medias';
   info: {
@@ -473,6 +484,7 @@ declare module '@strapi/strapi' {
       'shared.navigation': SharedNavigation;
       'shared.navigation-group': SharedNavigationGroup;
       'shared.running-text': SharedRunningText;
+      'shared.side-text': SharedSideText;
       'shared.social-media': SharedSocialMedia;
     }
   }

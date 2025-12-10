@@ -16,5 +16,10 @@ export default {
                 auth: false,
             },
         },
+        {
+            method: "DELETE",
+            path: "/products/:slug",
+            handler: "category.delete",
+        },
     ],
 };

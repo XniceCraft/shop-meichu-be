@@ -6,9 +6,9 @@
   },
   "options": {},
   "attributes": {
-    "section": {
+    "sideText": {
       "type": "component",
-      "component": "shared.base-section",
+      "component": "shared.side-text",
       "repeatable": false,
       "required": true
     },
