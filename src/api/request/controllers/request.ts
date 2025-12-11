@@ -128,7 +128,7 @@ export default factories.createCoreController(
                     });
 
                 await strapi.documents("api::request.request").publish({
-                    documentId: id,
+                    documentId: cancelledRequest.documentId,
                 });
 
                 const sanitizedEntity = await this.sanitizeOutput(
