@@ -8,7 +8,7 @@ export default {
         {
             method: "POST",
             path: "/requests/:id/cancel",
-            handler: "request.cancelOrder",
+            handler: "request.cancelRequest",
         },
         {
             method: "POST",

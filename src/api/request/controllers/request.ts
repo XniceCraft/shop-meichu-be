@@ -44,14 +44,14 @@ export default factories.createCoreController(
                     });
 
                 if (!request) {
-                    return ctx.notFound("Order not found");
+                    return ctx.notFound("Request not found");
                 }
 
                 switch (request.requestStatus) {
                     case "cancelled":
-                        return ctx.badRequest("Order is already cancelled");
+                        return ctx.badRequest("Request is already cancelled");
                     case "completed":
-                        return ctx.badRequest("Order is already completed");
+                        return ctx.badRequest("Request is already completed");
                 }
 
                 let nextRequestStatus:
@@ -89,12 +89,12 @@ export default factories.createCoreController(
 
                 return await this.transformResponse(sanitizedEntity, null);
             } catch (error) {
-                strapi.log.error("Order next action failed:", error);
-                return ctx.internalServerError("Failed to update order");
+                strapi.log.error("Request next action failed:", error);
+                return ctx.internalServerError("Failed to update request");
             }
         },
 
-        async cancelOrder(ctx) {
+        async cancelRequest(ctx) {
             try {
                 const { id } = ctx.params;
                 const request = await strapi
@@ -104,17 +104,17 @@ export default factories.createCoreController(
                     });
 
                 if (!request) {
-                    return ctx.notFound("Order not found");
+                    return ctx.notFound("Request not found");
                 }
 
                 switch (request.requestStatus) {
                     case "cancelled":
-                        return ctx.badRequest("Order is already cancelled");
+                        return ctx.badRequest("Request is already cancelled");
                     case "completed":
-                        return ctx.badRequest("Order is already completed");
+                        return ctx.badRequest("Request is already completed");
                     case "in_progress":
                         return ctx.badRequest(
-                            "Order is already in progress. Please contact our support"
+                            "Request is already in progress. Please contact our support"
                         );
                 }
 
@@ -127,6 +127,10 @@ export default factories.createCoreController(
                         },
                     });
 
+                await strapi.documents("api::request.request").publish({
+                    documentId: id,
+                });
+
                 const sanitizedEntity = await this.sanitizeOutput(
                     cancelledRequest,
                     ctx
@@ -136,12 +140,12 @@ export default factories.createCoreController(
                     sanitizedEntity,
                     null
                 );
-                response["message"] = "Successfully cancelled order";
+                response["message"] = "Successfully cancelled request";
 
                 return response;
             } catch (error) {
-                strapi.log.error("Order cancel failed:", error);
-                return ctx.internalServerError("Failed to cancel order");
+                strapi.log.error("Request cancel failed:", error);
+                return ctx.internalServerError("Failed to cancel request");
             }
         },
     })
