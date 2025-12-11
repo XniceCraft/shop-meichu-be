@@ -29,31 +29,30 @@ export default factories.createCoreController(
             return await this.transformResponse(sanitizedEntity);
         },
 
-        async delete(ctx) {
+        async softDelete(ctx) {
             await this.validateQuery(ctx);
 
             const { slug } = ctx.params;
             if (!slug) return ctx.notFound("Slug not defined");
 
-            const entity = await strapi
+            const product = await strapi
                 .documents("api::product.product")
                 .findFirst({
                     status: "published",
                     where: { slug },
                 });
 
-            if (!entity) return ctx.notFound("Product not found");
+            if (!product) return ctx.notFound("Product not found");
 
-            await strapi.documents("api::product.product").update({
-                documentId: entity.documentId,
-                data: {
-                    name: entity.name, // For slug purpose
-                    publishedAt: null,
-                },
-            });
+            const entity = await strapi
+                .documents("api::product.product")
+                .unpublish({
+                    documentId: product.documentId,
+                });
 
             ctx.status = 204;
-            ctx.body = null;
+            const sanitizedEntity = await this.sanitizeOutput(entity, ctx);
+            return await this.transformResponse(sanitizedEntity);
         },
     })
 );

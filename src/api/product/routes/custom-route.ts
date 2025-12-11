@@ -7,8 +7,8 @@ export default {
         },
         {
             method: "DELETE",
-            path: "/products/:slug",
-            handler: "product.delete",
+            path: "/products/:slug/soft-delete",
+            handler: "product.softDelete",
         },
     ],
 };

@@ -18,8 +18,8 @@ export default {
         },
         {
             method: "DELETE",
-            path: "/categories/:slug",
-            handler: "category.delete",
+            path: "/categories/:slug/soft-delete",
+            handler: "category.softDelete",
         },
     ],
 };
