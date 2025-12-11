@@ -18,7 +18,7 @@ export default {
         },
         {
             method: "DELETE",
-            path: "/products/:slug",
+            path: "/categories/:slug",
             handler: "category.delete",
         },
     ],
