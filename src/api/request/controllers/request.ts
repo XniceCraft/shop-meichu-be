@@ -82,6 +82,10 @@ export default factories.createCoreController(
                         },
                     });
 
+                await strapi.documents("api::request.request").publish({
+                    documentId: updatedOrder.documentId,
+                });
+
                 const sanitizedEntity = await this.sanitizeOutput(
                     updatedOrder,
                     ctx
