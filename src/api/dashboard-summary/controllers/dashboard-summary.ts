@@ -10,6 +10,11 @@ export default {
                 totalCategories,
                 totalSubscribers,
                 totalRequests,
+                requestsPending,
+                requestsConfirmed,
+                requestsInProgress,
+                requestsCompleted,
+                requestsCancelled,
             ] = await Promise.all([
                 strapi.documents("api::product.product").count({
                     status: "published",
@@ -23,6 +28,36 @@ export default {
                 strapi.documents("api::request.request").count({
                     status: "published",
                 }),
+                strapi.documents("api::request.request").count({
+                    status: "published",
+                    filters: {
+                        requestStatus: "pending",
+                    },
+                }),
+                strapi.documents("api::request.request").count({
+                    status: "published",
+                    filters: {
+                        requestStatus: "confirmed",
+                    },
+                }),
+                strapi.documents("api::request.request").count({
+                    status: "published",
+                    filters: {
+                        requestStatus: "in_progress",
+                    },
+                }),
+                strapi.documents("api::request.request").count({
+                    status: "published",
+                    filters: {
+                        requestStatus: "completed",
+                    },
+                }),
+                strapi.documents("api::request.request").count({
+                    status: "published",
+                    filters: {
+                        requestStatus: "cancelled",
+                    },
+                }),
             ]);
 
             ctx.body = {
@@ -31,6 +66,13 @@ export default {
                     totalCategories,
                     totalSubscribers,
                     totalRequests,
+                    requests: {
+                        requestsPending,
+                        requestsConfirmed,
+                        requestsInProgress,
+                        requestsCompleted,
+                        requestsCancelled,
+                    },
                 },
                 meta: {},
             };

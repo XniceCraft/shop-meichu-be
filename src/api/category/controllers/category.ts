@@ -58,7 +58,11 @@ export default factories.createCoreController(
         },
 
         async getProducts(ctx) {
-            await this.validateQuery(ctx);
+            await strapi.contentAPI.validate.query(
+                ctx.query,
+                strapi.contentType("api::product.product"),
+                { auth: ctx.state.auth }
+            );
 
             const { slug } = ctx.params;
             const sanitizedQueryParams = await strapi.contentAPI.sanitize.query(
