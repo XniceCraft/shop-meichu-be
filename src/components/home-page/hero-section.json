@@ -23,6 +23,12 @@
     "runningText": {
       "type": "text",
       "required": false
+    },
+    "ctaButton": {
+      "type": "component",
+      "component": "shared.cta-button",
+      "repeatable": false,
+      "required": true
     }
   },
   "config": {}

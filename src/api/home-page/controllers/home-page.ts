@@ -17,7 +17,7 @@ export default factories.createCoreController(
                     status: "published",
                     populate: {
                         heroSection: {
-                            populate: ["section", "background"],
+                            populate: ["section", "background", "ctaButton"],
                         },
                         subHeroSection: {
                             populate: {
