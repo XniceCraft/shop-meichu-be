@@ -70,10 +70,18 @@ export default factories.createCoreController(
                 strapi.contentType("api::product.product"),
                 { auth: ctx.state.auth }
             );
-            const page = Math.max(1, parseInt(ctx.query.page as string) || 1);
+            const page = Math.max(
+                1,
+                parseInt((ctx.query.pagination as any)?.page as string) || 1
+            );
             const pageSize = Math.min(
                 100,
-                Math.max(1, parseInt(ctx.query.pageSize as string) || 25)
+                Math.max(
+                    1,
+                    parseInt(
+                        (ctx.query.pagination as any)?.pageSize as string
+                    ) || 25
+                )
             );
 
             const category = await strapi
