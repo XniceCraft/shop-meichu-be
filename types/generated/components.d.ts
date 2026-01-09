@@ -187,6 +187,8 @@ export interface HomePageHeroSection extends Struct.ComponentSchema {
   attributes: {
     background: Schema.Attribute.Media<'images' | 'videos'> &
       Schema.Attribute.Required;
+    ctaButton: Schema.Attribute.Component<'shared.cta-button', false> &
+      Schema.Attribute.Required;
     runningText: Schema.Attribute.Text;
     section: Schema.Attribute.Component<'shared.base-section', false> &
       Schema.Attribute.Required;
